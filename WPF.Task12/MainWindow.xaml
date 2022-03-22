@@ -1,0 +1,68 @@
+﻿<Window x:Class="WPF.Task12.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.Task12"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="345.122" Width="579.268">
+    <Window.Resources>
+        <Style TargetType="CheckBox">
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="25"/>
+                            </Grid.RowDefinitions>
+                            <Rectangle Grid.Row="0" 
+                                       Stroke="DimGray"
+                                       StrokeThickness="2"
+                                       RadiusX="4"
+                                       RadiusY="4"
+                                       Width="20"
+                                       Height="20"  
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Opacity="1"/>
+                            <Ellipse x:Name="ellipse" Width="8" 
+                                     Height="8" 
+                                     Fill="DimGray"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center" 
+                                     Opacity="0"/>
+                            <Path x:Name="path" VerticalAlignment="Center" 
+                                  HorizontalAlignment="Center" 
+                                  StrokeDashArray="" 
+                                  Stroke="DimGray" 
+                                  Fill="DimGray" 
+                                  StrokeThickness="3"
+                                  Data="M 12,0 L 0,12 M 0,0 L 12,12"
+                                  Opacity="0"/>
+                            <ContentPresenter Grid.Row="1"
+                                Content="{TemplateBinding Content}"
+                                VerticalAlignment="Top"
+                                HorizontalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="path" Property="Opacity" Value="1"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter TargetName="ellipse" Property="Opacity" Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>            
+        </Style>
+    </Window.Resources>
+    <UniformGrid Columns="3" VerticalAlignment="Top">
+        <CheckBox Content="UnChecked" IsChecked="False"/>
+        <CheckBox Content="Checked" IsChecked="True"/>
+        <CheckBox Content="Indeterminate" IsChecked="{x:Null}"/>
+    </UniformGrid>
+</Window>
